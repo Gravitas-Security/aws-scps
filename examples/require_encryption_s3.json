@@ -1,0 +1,20 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Statement1",
+            "Effect": "Deny",
+            "Action": [
+                "s3:CreateBucket"
+            ],
+            "Resource": [
+                "*"
+            ],
+            "Condition": {
+                "StringNotEquals": {
+                    "s3:x-amz-server-side-encryption": "AES-256"
+                }
+            }
+        }
+    ]
+}

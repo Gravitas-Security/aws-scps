@@ -1,0 +1,22 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Statement1",
+            "Effect": "Deny",
+            "Action": [
+                "ec2:DeleteFlowLogs"
+            ],
+            "Resource": [
+                "*"
+            ],
+            "Condition": {
+                "StringNotEquals": {
+                    "aws:PrincipalArn": [
+                        "arn:aws:iam::accountId:role/role_name"
+                    ]
+                }
+            }
+        }
+    ]
+}

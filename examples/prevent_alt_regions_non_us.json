@@ -1,0 +1,43 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "DenyAllOutsideUS",
+            "Effect": "Deny",
+            "NotAction": [
+                "iam:*",
+                "aws-marketplace:*",
+                "organizations:*",
+                "route53:*",
+                "budgets:*",
+                "waf:*",
+                "cloudfront:*",
+                "globalaccelerator:*",
+                "importexport:*",
+                "support:*",
+                "directconnect:*",
+				"datapipeline:*",
+                "sns:ListSubscriptions",
+                "sns:ListTopics"
+            ],
+            "Resource": [
+                "*"
+            ],
+            "Condition": {
+                "StringNotEquals": {
+                    "aws:RequestedRegion": [
+                        "us-west-1",
+                        "us-west-2",
+                        "us-east-1",
+                        "us-east-2"
+                    ]
+                },
+				"ArnNotLike": {
+                    "aws:PrincipalARN": [
+						"arn:aws:iam::accountId:role/role_name"
+					]
+				}
+            }
+        }
+    ]
+}

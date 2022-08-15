@@ -1,0 +1,29 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "DenyChangesToOrgRole",
+            "Effect": "Deny",
+            "NotAction": [
+                "iam:GetContextKeysForPrincipalPolicy",
+                "iam:GetRole",
+                "iam:GetRolePolicy",
+                "iam:ListAttachedRolePolicies",
+                "iam:ListInstanceProfilesForRole",
+                "iam:ListRolePolicies",
+                "iam:ListRoleTags",
+                "iam:SimulatePrincipalPolicy"
+            ],
+            "Resource": [
+                "arn:aws:iam::*:role/aws-service-role/organizations.amazonaws.com/AWSServiceRoleForOrganizations"
+            ],
+            "Condition": {
+                "StringNotEquals": {
+                    "iam:AWSServiceName": [
+                        "organizations.amazonaws.com"
+                    ]
+                }
+            }
+        }
+    ]
+}

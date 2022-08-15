@@ -1,0 +1,23 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Statement1",
+            "Effect": "Deny",
+            "Action": [
+                "cloudtrail:UpdateTrail"
+            ],
+            "Resource": [
+                "arn:aws:cloudtrail:*:*:trail/role_name"
+            ],
+            "Condition": {
+                "ForAnyValue:StringNotEquals": {
+                    "aws:PrincipalArn": [
+                        "arn:aws:iam::accountId:role/role_name",
+                        "arn:aws:iam::accountId:role/aws-service-role/cloudtrail.amazonaws.com/AWSServiceRoleForCloudTrail"
+                    ]
+                }
+            }
+        }
+    ]
+}

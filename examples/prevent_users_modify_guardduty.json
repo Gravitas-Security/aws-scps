@@ -1,0 +1,22 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Statement1",
+            "Effect": "Deny",
+            "Action": [
+                "guardduty:*"
+            ],
+            "Resource": [
+                "*"
+            ],
+            "Condition": {
+                "StringNotEquals": {
+                    "iam:AWSServiceName": [
+                        "cloudformation.amazonaws.com"
+                    ]
+                }
+            }
+        }
+    ]
+}
